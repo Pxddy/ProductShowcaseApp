@@ -1,9 +1,8 @@
 package de.ph.productshowcaseapp.data.local
 
 import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Upsert
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -14,6 +13,6 @@ interface ProductDao {
     @Query("SELECT * FROM products WHERE id = :id")
     fun getProductById(id: Int): Flow<ProductEntity>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Upsert
     suspend fun upsertAll(products: List<ProductEntity>)
 }
