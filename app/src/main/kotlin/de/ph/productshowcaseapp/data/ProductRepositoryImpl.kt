@@ -10,9 +10,10 @@ import de.ph.productshowcaseapp.domain.Product
 import de.ph.productshowcaseapp.domain.ProductRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
-class ProductRepositoryImpl(
+class ProductRepositoryImpl @Inject constructor(
     private val productDao: ProductDao,
     private val productRemoteMediator: ProductRemoteMediator,
     private val productMapper: ProductMapper

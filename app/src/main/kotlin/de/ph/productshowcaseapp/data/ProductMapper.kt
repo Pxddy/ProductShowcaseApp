@@ -3,8 +3,9 @@ package de.ph.productshowcaseapp.data
 import de.ph.productshowcaseapp.data.local.ProductEntity
 import de.ph.productshowcaseapp.data.remote.ProductDto
 import de.ph.productshowcaseapp.domain.Product
+import javax.inject.Inject
 
-class ProductMapper {
+class ProductMapper @Inject constructor() {
 
     fun toDomain(entity: ProductEntity): Product {
         return Product(
