@@ -32,10 +32,9 @@ class ProductRemoteMediator @Inject constructor(
                 LoadType.REFRESH -> 0
                 LoadType.PREPEND -> return MediatorResult.Success(endOfPaginationReached = true)
                 LoadType.APPEND -> {
-                    val lastItem = state.lastItemOrNull()
-                        ?: return MediatorResult.Success(endOfPaginationReached = false)
+                    val remoteKey = state.lastItemOrNull()
+                        ?.let { remoteKeyDao.remoteKeyByProductId(it.id) }
 
-                    val remoteKey = remoteKeyDao.remoteKeyByProductId(lastItem.id)
                     remoteKey?.nextKey ?: return MediatorResult.Success(endOfPaginationReached = true)
                 }
             }
@@ -49,7 +48,10 @@ class ProductRemoteMediator @Inject constructor(
             val endOfPaginationReached = (pageKey + products.size) >= response.total
 
             if (loadType == LoadType.REFRESH && products.isEmpty() && response.total > 0) {
-                return MediatorResult.Error(IOException("Inconsistent data from API"))
+                val error = IOException(
+                    "Received an empty response on refresh, but the total count suggests data should exist."
+                )
+                return MediatorResult.Error(error)
             }
 
             appDatabase.withTransaction {
