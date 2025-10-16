@@ -74,6 +74,13 @@ dependencies {
     // Kotlinx Serialization
     implementation(libs.kotlinx.serialization.json)
 
+    // Network
+    implementation(platform(libs.okhttp.bom))
+    implementation(libs.okhttp)
+    implementation(platform(libs.retrofit.bom))
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.converter.kotlinx.serialization)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
