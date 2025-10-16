@@ -13,7 +13,14 @@ import de.ph.productshowcaseapp.data.local.AppDatabase
 import de.ph.productshowcaseapp.data.local.ProductDao
 import de.ph.productshowcaseapp.data.remote.ProductApiService
 import de.ph.productshowcaseapp.domain.ProductRepository
+import kotlinx.serialization.json.Json
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import javax.inject.Singleton
+
+private const val BASE_URL = "https://dummyjson.com/"
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -41,11 +48,32 @@ interface DataModule {
 
         @Provides
         @Singleton
-        fun provideProductApiService(): ProductApiService {
-            // TODO: Implement with Retrofit
-            return object : ProductApiService {
-                override suspend fun getProducts(limit: Int, skip: Int) = TODO("Provide a real implementation")
+        fun provideJson(): Json {
+            return Json {
+                ignoreUnknownKeys = true
             }
+        }
+
+        @Provides
+        @Singleton
+        fun provideOkHttpClient(): OkHttpClient {
+            return OkHttpClient.Builder().build()
+        }
+
+        @Provides
+        @Singleton
+        fun provideRetrofit(json: Json, okHttpClient: OkHttpClient): Retrofit {
+            return Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .client(okHttpClient)
+                .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+                .build()
+        }
+
+        @Provides
+        @Singleton
+        fun provideProductApiService(retrofit: Retrofit): ProductApiService {
+            return retrofit.create(ProductApiService::class.java)
         }
     }
 }
