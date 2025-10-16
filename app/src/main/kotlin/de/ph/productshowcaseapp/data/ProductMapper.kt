@@ -16,7 +16,7 @@ class ProductMapper @Inject constructor() {
             rating = entity.rating,
             category = entity.category,
             thumbnail = entity.thumbnail,
-            images = entity.images.split(",") // Simple CSV split
+            images = entity.images
         )
     }
 
@@ -29,7 +29,7 @@ class ProductMapper @Inject constructor() {
             rating = dto.rating,
             category = dto.category,
             thumbnail = dto.thumbnail,
-            images = dto.images.joinToString(",") // Simple CSV join
+            images = dto.images
         )
     }
 
