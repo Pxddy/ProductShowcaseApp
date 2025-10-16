@@ -32,7 +32,6 @@ class ProductRepositoryImpl @Inject constructor(
     }
 
     override fun getProductById(id: Int): Flow<Product> {
-        // TODO: Implement data orchestration from API and DB with caching logic
         return productDao.getProductById(id).map {
             productMapper.toDomain(it)
         }
