@@ -16,4 +16,7 @@ interface ProductDao {
 
     @Upsert
     suspend fun upsertAll(products: List<ProductEntity>)
+
+    @Query("DELETE FROM products")
+    suspend fun clearAll()
 }

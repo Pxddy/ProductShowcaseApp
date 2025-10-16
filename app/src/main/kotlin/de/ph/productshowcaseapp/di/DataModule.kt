@@ -11,6 +11,7 @@ import dagger.hilt.components.SingletonComponent
 import de.ph.productshowcaseapp.data.ProductRepositoryImpl
 import de.ph.productshowcaseapp.data.local.AppDatabase
 import de.ph.productshowcaseapp.data.local.ProductDao
+import de.ph.productshowcaseapp.data.local.ProductRemoteKeyDao
 import de.ph.productshowcaseapp.data.remote.ProductApiService
 import de.ph.productshowcaseapp.domain.ProductRepository
 import kotlinx.serialization.json.Json
@@ -44,6 +45,11 @@ interface DataModule {
         @Provides
         fun provideProductDao(db: AppDatabase): ProductDao {
             return db.productDao()
+        }
+
+        @Provides
+        fun provideRemoteKeyDao(db: AppDatabase): ProductRemoteKeyDao {
+            return db.remoteKeyDao()
         }
 
         @Provides
