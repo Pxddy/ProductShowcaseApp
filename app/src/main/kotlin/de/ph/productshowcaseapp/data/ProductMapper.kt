@@ -12,7 +12,12 @@ class ProductMapper @Inject constructor() {
             id = entity.id,
             title = entity.title,
             description = entity.description,
+            // NOTE: The DummyJSON API does not provide any currency information.
+            // For this demo app, we are assuming that all prices are in EUR.
+            // In a real-world application, the API would explicitly provide the currency,
+            // or a conversion would need to be performed here based on a base currency (e.g., USD).
             price = entity.price,
+            currency = "EUR",
             rating = entity.rating,
             category = entity.category,
             thumbnail = entity.thumbnail,
