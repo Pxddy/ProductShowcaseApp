@@ -1,4 +1,4 @@
-package de.ph.productshowcaseapp.ui
+package de.ph.productshowcaseapp.ui.feature.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
