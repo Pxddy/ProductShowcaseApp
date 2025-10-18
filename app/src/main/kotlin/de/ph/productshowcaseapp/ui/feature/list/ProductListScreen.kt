@@ -29,16 +29,18 @@ import kotlinx.coroutines.flow.flowOf
 
 @Composable
 fun ProductListScreen(
-    viewModel: ProductListViewModel = hiltViewModel()
+    onProductClick: (Int) -> Unit,
+    viewModel: ProductListViewModel = hiltViewModel(),
 ) {
     val products = viewModel.products.collectAsLazyPagingItems()
-    ProductListScreenContent(products = products)
+    ProductListScreenContent(products = products, onProductClick = onProductClick)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun ProductListScreenContent(
-    products: LazyPagingItems<ProductListItem>
+    products: LazyPagingItems<ProductListItem>,
+    onProductClick: (Int) -> Unit,
 ) {
     Scaffold(
         topBar = {
@@ -65,11 +67,15 @@ private fun ProductListScreenContent(
         ) {
             items(
                 count = products.itemCount,
-                key = products.itemKey { it },
+                key = products.itemKey { it.id },
                 contentType = products.itemContentType { it.type },
             ) { index ->
                 products[index]?.let { product ->
-                    ProductListItemCard(product = product, onClick = {})
+                    ProductListItemCard(
+                        product = product,
+                        onClick = { onProductClick(product.id) },
+                    )
+
                     HorizontalDivider(color = MaterialTheme.colorScheme.outline)
                 }
             }
@@ -105,6 +111,9 @@ private fun ProductListScreenPreview() {
             )
         ).collectAsLazyPagingItems()
 
-        ProductListScreenContent(products = dummyProducts)
+        ProductListScreenContent(
+            products = dummyProducts,
+            onProductClick = {},
+        )
     }
 }
