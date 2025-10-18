@@ -7,4 +7,6 @@ data class ProductListItem(
     val price: Double,
     val currencyCode: String,
     val category: String
-)
+) {
+    val type = ProductListItemType.Product
+}

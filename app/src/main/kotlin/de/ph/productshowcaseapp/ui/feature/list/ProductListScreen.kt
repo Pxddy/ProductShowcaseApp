@@ -20,6 +20,8 @@ import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.paging.PagingData
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemContentType
+import androidx.paging.compose.itemKey
 import de.ph.productshowcaseapp.R
 import de.ph.productshowcaseapp.ui.feature.list.components.ProductListItemCard
 import de.ph.productshowcaseapp.ui.theme.ProductShowcaseAppTheme
@@ -63,7 +65,8 @@ private fun ProductListScreenContent(
         ) {
             items(
                 count = products.itemCount,
-                key = { index -> products.peek(index)?.id ?: index }
+                key = products.itemKey { it },
+                contentType = products.itemContentType { it.type },
             ) { index ->
                 products[index]?.let { product ->
                     ProductListItemCard(product = product, onClick = {})
