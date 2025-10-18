@@ -8,7 +8,8 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ProductDao {
-    @Query("SELECT * FROM products")
+
+    @Query("SELECT * FROM products ORDER BY id ASC")
     fun getProducts(): PagingSource<Int, ProductEntity>
 
     @Query("SELECT * FROM products WHERE id = :id")

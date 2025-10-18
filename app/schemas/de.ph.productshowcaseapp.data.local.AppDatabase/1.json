@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "ee15bb25cd7e3b8bb6b67e72b72a9f4b",
+    "identityHash": "431fc6df4e3311b59ad2551dbad739f0",
     "entities": [
       {
         "tableName": "products",
@@ -63,47 +63,11 @@
             "id"
           ]
         }
-      },
-      {
-        "tableName": "product_remote_keys",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`product_id` INTEGER NOT NULL, `next_key` INTEGER, PRIMARY KEY(`product_id`), FOREIGN KEY(`product_id`) REFERENCES `products`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
-        "fields": [
-          {
-            "fieldPath": "productId",
-            "columnName": "product_id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "nextKey",
-            "columnName": "next_key",
-            "affinity": "INTEGER"
-          }
-        ],
-        "primaryKey": {
-          "autoGenerate": false,
-          "columnNames": [
-            "product_id"
-          ]
-        },
-        "foreignKeys": [
-          {
-            "table": "products",
-            "onDelete": "CASCADE",
-            "onUpdate": "NO ACTION",
-            "columns": [
-              "product_id"
-            ],
-            "referencedColumns": [
-              "id"
-            ]
-          }
-        ]
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'ee15bb25cd7e3b8bb6b67e72b72a9f4b')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '431fc6df4e3311b59ad2551dbad739f0')"
     ]
   }
 }
