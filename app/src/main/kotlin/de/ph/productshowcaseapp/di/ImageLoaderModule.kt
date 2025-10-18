@@ -11,6 +11,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import de.ph.productshowcaseapp.BuildConfig
 import okhttp3.OkHttpClient
 import javax.inject.Singleton
 import kotlin.time.ExperimentalTime
