@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Product Showcase App</string>
+    <string name="app_name" translatable="false">Product Showcase App</string>
+    <string name="product_list_title">Products</string>
+    <string name="product_list_item_click_label">View details for %1$s</string>
 </resources>
