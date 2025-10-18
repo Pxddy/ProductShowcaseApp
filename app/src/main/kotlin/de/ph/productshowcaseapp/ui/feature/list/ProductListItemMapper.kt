@@ -7,10 +7,11 @@ class ProductListItemMapper @Inject constructor() {
 
     fun toUi(domain: Product): ProductListItem {
         return ProductListItem(
+            id = domain.id,
             thumbnail = domain.thumbnail,
             title = domain.title,
             price = domain.price,
-            currency = "EUR", // Assuming EUR for now
+            currencyCode = domain.currencyCode,
             category = domain.category
         )
     }

@@ -17,7 +17,7 @@ class ProductMapper @Inject constructor() {
             // In a real-world application, the API would explicitly provide the currency,
             // or a conversion would need to be performed here based on a base currency (e.g., USD).
             price = entity.price,
-            currency = "EUR",
+            currencyCode = "EUR",
             rating = entity.rating,
             category = entity.category,
             thumbnail = entity.thumbnail,
