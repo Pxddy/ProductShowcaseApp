@@ -2,4 +2,8 @@
     <string name="app_name" translatable="false">Product Showcase App</string>
     <string name="product_list_title">Products</string>
     <string name="product_list_item_click_label">View details for %1$s</string>
+    <string name="product_detail_description_title">Description</string>
+    <string name="product_detail_error_message">Failed to load product.</string>
+    <string name="product_detail_star_rating_content_description">Rating: %1$.1f out of %2$d stars</string>
+    <string name="navigation_back_icon_content_description">Navigate up</string>
 </resources>

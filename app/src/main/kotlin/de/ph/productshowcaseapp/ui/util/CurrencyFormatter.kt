@@ -17,10 +17,13 @@ import java.util.Currency
  * @return A locale-specific formatted currency string (e.g., "9,99 €", "$9.99").
  */
 @Composable
-fun rememberFormattedPrice(price: Double, currencyCode: String): String {
-    val currentLocale = Locale.current
-    val numberFormat = remember(currentLocale, currencyCode) {
-        NumberFormat.getCurrencyInstance(currentLocale.platformLocale).apply {
+fun rememberFormattedPrice(
+    price: Double,
+    currencyCode: String,
+    locale: Locale = Locale.current,
+): String {
+    val numberFormat = remember(locale, currencyCode) {
+        NumberFormat.getCurrencyInstance(locale.platformLocale).apply {
             runCatching { Currency.getInstance(currencyCode) }
                 .onSuccess { validCurrency ->
                     this.currency = validCurrency

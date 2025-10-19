@@ -2,4 +2,8 @@
 <resources>
     <string name="product_list_title">Produkte</string>
     <string name="product_list_item_click_label">Details für %1$s anzeigen</string>
+    <string name="product_detail_description_title">Beschreibung</string>
+    <string name="product_detail_error_message">Produkt konnte nicht geladen werden.</string>
+    <string name="product_detail_star_rating_content_description">Bewertung: %1$s von %2$d Sternen</string>
+    <string name="navigation_back_icon_content_description">Nach oben navigieren</string>
 </resources>
