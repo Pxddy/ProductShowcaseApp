@@ -42,12 +42,8 @@ android {
         schemaDirectory("$projectDir/schemas")
     }
     testOptions {
-        unitTests {
-            isIncludeAndroidResources = true
-
-            all {
-                it.useJUnitPlatform()
-            }
+        unitTests.all {
+            it.useJUnitPlatform()
         }
     }
 }
@@ -67,9 +63,9 @@ dependencies {
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
+    implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.compose.material.icons.core)
     implementation(libs.androidx.compose.material.icons.extended)
-    implementation(libs.androidx.compose.material3)
 
     // Room
     implementation(libs.androidx.room.runtime)
@@ -87,6 +83,9 @@ dependencies {
 
     // Navigation
     implementation(libs.androidx.navigation.compose)
+
+    // Kotlinx Coroutines
+    implementation(libs.kotlinx.coroutines.android)
 
     // Kotlinx Serialization
     implementation(libs.kotlinx.serialization.json)
@@ -107,15 +106,13 @@ dependencies {
     // Logging
     implementation(libs.timber)
 
-    // Coroutines
-    implementation(libs.kotlinx.coroutines.android)
-
+    // Testing
     testImplementation(platform(libs.junit.bom))
     testImplementation(libs.junit.jupiter)
     testRuntimeOnly(libs.junit.platform.launcher)
     testImplementation(libs.kotest.assertions.core)
-    testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
