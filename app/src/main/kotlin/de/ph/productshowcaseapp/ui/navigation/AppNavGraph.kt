@@ -6,6 +6,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import de.ph.productshowcaseapp.ui.feature.detail.ProductDetailScreen
 import de.ph.productshowcaseapp.ui.feature.list.ProductListScreen
 
 @Composable
@@ -22,7 +23,7 @@ fun AppNavGraph(modifier: Modifier = Modifier) {
         }
 
         composable<Destination.ProductDetail> {
-            TODO("Add ProductDetailScreen")
+            ProductDetailScreen(onBackClick = navController::navigateUp)
         }
     }
 }
